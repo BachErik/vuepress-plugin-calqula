@@ -17,7 +17,7 @@ export const markdownCalqulaPlugin = (): Plugin => {
         closeRender: () => "' />",
       });
     },
-    clientConfigFile: path.resolve(__dirname, '../clientAppEnhance.ts'),
+    clientConfigFile: path.resolve(__dirname, '../src/clientAppEnhance.ts'),
   };
 };
 
