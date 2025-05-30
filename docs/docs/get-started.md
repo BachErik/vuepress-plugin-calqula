@@ -2,10 +2,6 @@
 
 This is a normal page, which contains VuePress basics.
 
-:::graph
-Hallo
-:::
-
 ## Pages
 
 You can add markdown files in your vuepress directory, every markdown file will be converted to a page in your site.
@@ -30,8 +26,28 @@ Meanwhile, you can also add configuration per page with [frontmatter][].
 
 Here are common configuration controlling layout of `@vuepress/theme-default`:
 
-:::graph test
-Testing shit
+:::graph
+{
+"view": {
+"center": {
+"x": 0,
+"y": 0
+},
+"scale": 10
+},
+"graphs": {
+"Example": {
+"funktion": "y=log(x)",
+"color": "blue"
+}
+},
+"points": {
+"Origin": {
+"x": 0,
+"y": 0
+}
+}
+}
 :::
 
 - [navbar][]
