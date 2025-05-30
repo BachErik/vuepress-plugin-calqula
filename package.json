@@ -1,0 +1,35 @@
+{
+  "scripts": {
+    "docs:build": "pnpm --filter ./docs run docs:build",
+    "docs:clean-dev": "pnpm --filter ./docs run docs:clean-dev",
+    "docs:dev": "pnpm --filter ./calqula run build && pnpm --filter ./docs run docs:dev",
+    "docs:update-package": "pnpm --filter ./docs run docs:update-package",
+    "format": "prettier --write .",
+    "prepare": "husky"
+  },
+  "homepage": "https://github.com/BachErik/Calqula",
+  "bugs": {
+    "url": "https://github.com/BachErik/Calqula/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BachErik/Calqula.git"
+  },
+  "type": "module",
+  "keywords": [
+    "vuepress-plugin",
+    "math",
+    "Calqula",
+    "visualization"
+  ],
+  "author": "BachErik",
+  "license": "MIT",
+  "packageManager": "pnpm@10.11.0",
+  "devDependencies": {
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.0",
+    "prettier": "^3.5.3"
+  }
+}

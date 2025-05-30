@@ -1,0 +1,75 @@
+{
+  "name": "vuepress-plugin-calqula",
+  "version": "0.0.1",
+  "description": "A math visualization engin",
+  "keywords": [
+    "vuepress-plugin",
+    "math",
+    "Calqula",
+    "visualization"
+  ],
+  "homepage": "https://bacherik.github.io/calqula/",
+  "bugs": {
+    "url": "https://github.com/BachErik/Calqula/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BachErik/Calqula.git",
+    "directory": "calqula"
+  },
+  "license": "MIT",
+  "author": {
+    "email": "bacherik.info@gmail.com",
+    "name": "BachErik",
+    "url": "https://bacherik.de"
+  },
+  "type": "module",
+  "main": "./dist/calqula.umd.js",
+  "module": "./dist/calqula.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/calqula.es.js",
+      "require": "./dist/calqula.umd.js"
+    },
+    "./node/index.js": "./dist/calqula.es.js"
+  },
+  "files": [
+    "dist/node",
+    "dist/client"
+  ],
+  "scripts": {
+    "build": "vue-tsc -b && vite build"
+  },
+  "packageManager": "pnpm@10.10.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@mdit/plugin-container": "catalog:",
+    "@types/markdown-it": "catalog:",
+    "@vuepress/client": "catalog:",
+    "@vuepress/core": "catalog:",
+    "@vuepress/helper": "catalog:",
+    "@vuepress/markdown": "catalog:",
+    "@vuepress/utils": "catalog:",
+    "@vueuse/core": "catalog:",
+    "tslib": "catalog:",
+    "vue": "catalog:",
+    "vue-tsc": "catalog:"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "catalog:",
+    "@vue/compiler-sfc": "catalog:",
+    "@vue/tsconfig": "catalog:",
+    "events": "^3.3.0",
+    "markdown-it": "catalog:",
+    "stream-browserify": "^3.0.0",
+    "typescript": "catalog:",
+    "vite": "catalog:",
+    "vite-plugin-checker": "catalog:",
+    "vite-plugin-node-polyfills": "^0.23.0"
+  },
+  "peerDependencies": {
+    "vuepress": "catalog:"
+  }
+}
