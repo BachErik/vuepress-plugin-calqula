@@ -1,8 +1,8 @@
 {
   "scripts": {
-    "docs:build": "pnpm --filter ./docs run build",
+    "docs:build": "pnpm --filter ./docs run docs:build",
     "docs:clean-dev": "pnpm --filter ./docs run docs:clean-dev",
-    "docs:dev": "pnpm --filter ./calqula run build && pnpm --filter ./docs run docs:dev",
+    "docs:dev": "pnpm --filter ./docs run docs:dev",
     "docs:update-package": "pnpm --filter ./docs run docs:update-package",
     "format": "prettier --write .",
     "prepare": "husky"
