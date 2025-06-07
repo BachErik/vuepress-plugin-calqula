@@ -492,8 +492,9 @@ function resetView(): void {
 
 function resize(): void {
   if (!canvasEl.value) return;
-  width = canvasEl.value.width = window.innerWidth;
-  height = canvasEl.value.height = window.innerHeight;
+  const rect = canvasEl.value.getBoundingClientRect();
+  width = canvasEl.value.width = rect.width;
+  height = canvasEl.value.height = rect.height;
   draw();
 }
 
@@ -597,35 +598,29 @@ watch(
 );
 </script>
 
-<!-- Global resets and theme — not scoped so they actually apply -->
+<!-- Global resets and theme — not scoped so they actually apply 
 <style>
-html,
-body {
-  margin: 0;
-  height: 100%;
-  overflow: hidden;
-  font-family: 'Roboto', sans-serif;
-}
-body.dark {
-  background-color: #1e1e1e;
-  color: #ddd;
-}
-body.light {
-  background-color: #fff;
-  color: #333;
-}
-</style>
 
+</style>
+-->
 <!-- Component-scoped styling -->
 <style scoped>
 .graph-container {
+  width: 90%;
+  padding-top: 90%;
   position: relative;
+  margin: auto;
+}
+
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-}
-canvas {
   display: block;
 }
+
 .reset-btn {
   position: absolute;
   top: 10px;
@@ -641,17 +636,21 @@ canvas {
     transform 0.2s,
     box-shadow 0.2s;
 }
+
 .reset-btn:hover {
   transform: scale(1.05);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
+
 .reset-btn:active {
   transform: scale(0.98);
 }
+
 .reset-btn .material-symbols-outlined {
   vertical-align: middle;
   color: red;
 }
+
 .error-msg {
   position: absolute;
   top: 50%;
@@ -664,9 +663,31 @@ canvas {
   z-index: 20;
   transition: opacity 0.3s;
 }
+
 body.light .error-msg {
   background: rgba(255, 255, 255, 0.9);
   color: #000;
   border-color: #000;
+}
+</style>
+
+<!-- resets and theme-->
+<style scoped>
+html,
+body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Roboto', sans-serif;
+}
+
+body.dark {
+  background-color: #1e1e1e;
+  color: #ddd;
+}
+
+body.light {
+  background-color: #fff;
+  color: #333;
 }
 </style>
