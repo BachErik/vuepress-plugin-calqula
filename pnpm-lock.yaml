@@ -7,8 +7,8 @@ settings:
 catalogs:
   default:
     '@mdit/plugin-container':
-      specifier: ^0.20.0
-      version: 0.20.0
+      specifier: ^0.22.0
+      version: 0.22.0
     '@types/markdown-it':
       specifier: ^14.1.2
       version: 14.1.2
@@ -97,7 +97,7 @@ importers:
     dependencies:
       '@mdit/plugin-container':
         specifier: 'catalog:'
-        version: 0.20.0(markdown-it@14.1.0)
+        version: 0.22.0(markdown-it@14.1.0)
       '@types/markdown-it':
         specifier: 'catalog:'
         version: 14.1.2
@@ -479,8 +479,8 @@ packages:
       markdown-it:
         optional: true
 
-  '@mdit/plugin-container@0.20.0':
-    resolution: {integrity: sha512-ygFd8jtb3uXtiubH6x2zjyRUemAUBkbDiQGeMosCpTYqPbNq2voac0VaAi/WlnkQlXH34wSTHOZbq8IoPRghlQ==}
+  '@mdit/plugin-container@0.22.0':
+    resolution: {integrity: sha512-m/wpPPfNMYmRz6DJi0JBOVe/A+MtMJVFlIjCvxR7kF2bA4WuJdUn9GFy95DDMegp4bpQMUwOwDoFsxAuPGu5Vw==}
     engines: {node: '>= 18'}
     peerDependencies:
       markdown-it: ^14.1.0
@@ -2910,7 +2910,7 @@ snapshots:
     optionalDependencies:
       markdown-it: 14.1.0
 
-  '@mdit/plugin-container@0.20.0(markdown-it@14.1.0)':
+  '@mdit/plugin-container@0.22.0(markdown-it@14.1.0)':
     dependencies:
       '@types/markdown-it': 14.1.2
     optionalDependencies:
