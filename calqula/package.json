@@ -40,7 +40,7 @@
   "scripts": {
     "build": "vue-tsc -b && vite build"
   },
-  "packageManager": "pnpm@10.10.0",
+  "packageManager": "pnpm@10.11.1",
   "publishConfig": {
     "access": "public"
   },
