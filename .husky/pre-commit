@@ -1,1 +1,1 @@
-echo pnpm test
+pnpm run format
