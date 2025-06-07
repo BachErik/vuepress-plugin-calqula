@@ -438,6 +438,7 @@ function validateData(data: unknown): asserts data is Config {
 }
 
 function initialize(): void {
+  errorMessage.value = '';
   try {
     validateData(props.config);
     // View
