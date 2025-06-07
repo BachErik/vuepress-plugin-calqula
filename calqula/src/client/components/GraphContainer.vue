@@ -591,8 +591,10 @@ watch(() => props.config, initialize, { deep: true });
 watch(
   () => props.theme,
   (t = Theme.Dark) => {
-    document.body.classList.toggle('dark', t === Theme.Dark);
-    document.body.classList.toggle('light', t === Theme.Light);
+    if (typeof document !== 'undefined') {
+      document.body.classList.toggle('dark', t === Theme.Dark);
+      document.body.classList.toggle('light', t === Theme.Light);
+    }
   },
   { immediate: true },
 );
