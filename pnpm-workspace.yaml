@@ -13,7 +13,7 @@ catalog:
   '@vuepress/helper': 2.0.0-rc.108
   '@vuepress/markdown': 2.0.0-rc.23
   '@vuepress/theme-default': 2.0.0-rc.108
-  '@vuepress/utils': 2.0.0-rc.23
+  '@vuepress/utils': 2.0.0-rc.25
   '@vueuse/core': ^13.3.0
   markdown-it: ^14.1.0
   rollup: ^4.42.0
