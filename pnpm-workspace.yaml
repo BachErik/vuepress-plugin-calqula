@@ -10,7 +10,7 @@ catalog:
   '@vuepress/bundler-vite': 2.0.0-rc.23
   '@vuepress/client': 2.0.0-rc.23
   '@vuepress/core': 2.0.0-rc.23
-  '@vuepress/helper': 2.0.0-rc.108
+  '@vuepress/helper': 2.0.0-rc.112
   '@vuepress/markdown': 2.0.0-rc.23
   '@vuepress/theme-default': 2.0.0-rc.108
   '@vuepress/utils': 2.0.0-rc.23
