@@ -1,12 +1,8 @@
-import { getDirname, path } from '@vuepress/utils';
-import type { Plugin } from '@vuepress/core';
-import type { MarkdownEnv } from '@vuepress/markdown';
-import type { MarkdownItContainerOptions } from '@mdit/plugin-container';
-import { container } from '@mdit/plugin-container';
-import { cleanMarkdownEnv } from './cleanMarkdownEnv.js';
-import type StateBlock from 'markdown-it/lib/rules_block/state_block.mjs';
+import { getDirname, path } from '@vuepress/utils'
+import type { Plugin } from '@vuepress/core'
+import type StateBlock from 'markdown-it/lib/rules_block/state_block.mjs'
 
-const __dirname = import.meta.dirname || getDirname(import.meta.url);
+const __dirname = getDirname(import.meta.url)
 
 export const markdownCalqulaPlugin = (): Plugin => {
   return {
@@ -16,33 +12,43 @@ export const markdownCalqulaPlugin = (): Plugin => {
         'fence',
         'graph-block',
         (state: StateBlock, startLine, endLine, silent) => {
-          const startPos = state.bMarks[startLine] + state.tShift[startLine];
-          const lineText = state.src.slice(startPos, state.eMarks[startLine]);
-          if (!/^::: *graph *$/.test(lineText)) return false;
+          const bMark = state.bMarks[startLine]
+          const tShift = state.tShift[startLine]
+          const eMark = state.eMarks[startLine]
+          if (
+            bMark === undefined ||
+            tShift === undefined ||
+            eMark === undefined
+          )
+            return false
+          const startPos = bMark + tShift
+          const lineText = state.src.slice(startPos, eMark)
+          if (!/^::: *graph *$/.test(lineText)) return false
           // find closing :::
-          let nextLine = startLine + 1;
-          let content = '';
+          let nextLine = startLine + 1
+          let content = ''
           while (nextLine < endLine) {
-            const text = state.src.slice(
-              state.bMarks[nextLine] + state.tShift[nextLine],
-              state.eMarks[nextLine],
-            );
-            if (/^::: *$/.test(text)) break;
-            content += text + '\n';
-            nextLine++;
+            const b = state.bMarks[nextLine]
+            const t = state.tShift[nextLine]
+            const e = state.eMarks[nextLine]
+            if (b === undefined || t === undefined || e === undefined) break
+            const text = state.src.slice(b + t, e)
+            if (/^::: *$/.test(text)) break
+            content += text + '\n'
+            nextLine++
           }
-          if (nextLine >= endLine) return false;
+          if (nextLine >= endLine) return false
           if (!silent) {
-            const token = state.push('html_block', '', 0);
-            token.content = `<GraphContainer :config='${content.trim()}' />\n`;
+            const token = state.push('html_block', '', 0)
+            token.content = `<GraphContainer :config='${content.trim()}' />\n`
           }
-          state.line = nextLine + 1;
-          return true;
-        },
-      );
+          state.line = nextLine + 1
+          return true
+        }
+      )
     },
-    clientConfigFile: path.resolve(__dirname, '../src/clientAppEnhance.ts'),
-  };
-};
+    clientConfigFile: path.resolve(__dirname, '../src/clientAppEnhance.ts')
+  }
+}
 
-export default markdownCalqulaPlugin;
+export default markdownCalqulaPlugin

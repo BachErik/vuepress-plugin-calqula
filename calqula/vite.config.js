@@ -1,14 +1,14 @@
-import checker from 'vite-plugin-checker';
-import { defineConfig } from 'vite';
-import { nodePolyfills } from 'vite-plugin-node-polyfills';
-import vue from '@vitejs/plugin-vue';
-import path from 'path';
+import checker from 'vite-plugin-checker'
+import { defineConfig } from 'vite'
+import { nodePolyfills } from 'vite-plugin-node-polyfills'
+import vue from '@vitejs/plugin-vue'
+import path from 'path'
 
 export default defineConfig({
   plugins: [
     vue(),
     checker({
-      typescript: true,
+      typescript: true
     }),
     nodePolyfills({
       // Options (if needed):
@@ -16,14 +16,14 @@ export default defineConfig({
       // If no option is passed, adds all polyfills.
       //include: ['path'], // You might want to be specific
       // To polyfill `node:` protocol imports.
-      protocolImports: true,
-    }),
+      protocolImports: true
+    })
   ],
   build: {
     lib: {
       entry: path.resolve(__dirname, 'src/node/index.ts'),
       name: 'VuepressPluginCalqula',
-      fileName: (format) => `calqula.${format}.js`,
+      fileName: (format) => `calqula.${format}.js`
     },
     rollupOptions: {
       external: [
@@ -35,14 +35,15 @@ export default defineConfig({
         '@vuepress/core',
         '@vuepress/client',
         '@vuepress/utils',
-        '@vuepress/markdown',
+        '@vuepress/markdown'
       ],
       output: {
         globals: {
           vue: 'Vue',
           '@vuepress/client': 'VuePressClient',
-        },
-      },
-    },
-  },
-});
+          '@vuepress/utils': 'VuePressUtils'
+        }
+      }
+    }
+  }
+})

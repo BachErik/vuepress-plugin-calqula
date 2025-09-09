@@ -1,2 +1,2 @@
-export * from './markdownCalqulaPlugin.js';
-export * from './graph.js';
+export * from './markdownCalqulaPlugin.js'
+export * from './graph.js'

@@ -115,7 +115,7 @@ function drawNonOverlappingLabel(
     }
   }
   // Fallback
-  const [ox, oy] = offsets[0];
+  const [ox, oy] = offsets[0] ?? [0, 0];
   const lx = Math.max(0, Math.min(width - fw, x + ox));
   const ly = Math.max(0, Math.min(height - fh, y + oy));
   labelBoxes.push({ x: lx, y: ly, width: fw, height: fh });
@@ -144,8 +144,8 @@ function draw(): void {
   hoverTooltip = null;
   closestHoverDistance = Infinity;
   drawGrid();
-  for (const lbl in graphs) drawGraph(lbl, graphs[lbl]);
-  for (const lbl in points) drawPoint(lbl, points[lbl]);
+  for (const lbl in graphs) drawGraph(lbl, graphs[lbl]!);
+  for (const lbl in points) drawPoint(lbl, points[lbl]!);
   if (hoverTooltip) drawTooltip(hoverTooltip);
 }
 
@@ -416,8 +416,11 @@ function roundRect(
 }
 
 function getTouchDist(touches: TouchList): number {
-  const dx = touches[0].clientX - touches[1].clientX;
-  const dy = touches[0].clientY - touches[1].clientY;
+  const t0 = touches.item(0);
+  const t1 = touches.item(1);
+  if (!t0 || !t1) return 0;
+  const dx = t0.clientX - t1.clientX;
+  const dy = t0.clientY - t1.clientY;
   return Math.hypot(dx, dy);
 }
 
@@ -447,7 +450,7 @@ function initialize(): void {
     // Graphs
     usedColors.clear();
     Object.keys(props.config.graphs).forEach((label) => {
-      const g = props.config.graphs[label];
+      const g = props.config.graphs[label]!;
       const assigned =
         g.color || defaultColors.find((c) => !usedColors.has(c)) || 'black';
       usedColors.add(assigned);
@@ -459,7 +462,7 @@ function initialize(): void {
     });
     // Points
     Object.keys(props.config.points).forEach((label) => {
-      const p = props.config.points[label];
+      const p = props.config.points[label]!;
       points[label] = { x: p.x, y: p.y, color: p.color };
     });
     // Backup
@@ -476,16 +479,16 @@ function resetView(): void {
   view.center.y = initialConfig.view.center.y;
   view.scale = initialConfig.view.scale;
   Object.keys(initialConfig.graphs).forEach((label) => {
-    const g0 = initialConfig!.graphs[label];
-    graphs[label].funktion = g0.funktion;
-    graphs[label].color = g0.color;
-    graphs[label].assignedColor = g0.color || graphs[label].assignedColor;
+    const g0 = initialConfig!.graphs[label]!;
+    graphs[label]!.funktion = g0.funktion;
+    graphs[label]!.color = g0.color;
+    graphs[label]!.assignedColor = g0.color || graphs[label]!.assignedColor;
   });
   Object.keys(initialConfig.points).forEach((label) => {
-    const p0 = initialConfig!.points[label];
-    points[label].x = p0.x;
-    points[label].y = p0.y;
-    points[label].color = p0.color;
+    const p0 = initialConfig!.points[label]!;
+    points[label]!.x = p0.x;
+    points[label]!.y = p0.y;
+    points[label]!.color = p0.color;
   });
   draw();
 }
@@ -524,7 +527,9 @@ function onMouseUp(): void {
 function onTouchStart(e: TouchEvent): void {
   if (e.touches.length === 1) {
     isDragging = true;
-    dragStart = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+    const t0 = e.touches.item(0);
+    if (!t0) return;
+    dragStart = { x: t0.clientX, y: t0.clientY };
     viewStart = {
       center: { x: view.center.x, y: view.center.y },
       scale: view.scale,
@@ -538,8 +543,10 @@ function onTouchStart(e: TouchEvent): void {
 function onTouchMove(e: TouchEvent): void {
   e.preventDefault();
   if (e.touches.length === 1 && isDragging) {
-    const dx = e.touches[0].clientX - dragStart.x;
-    const dy = e.touches[0].clientY - dragStart.y;
+    const t0 = e.touches.item(0);
+    if (!t0) return;
+    const dx = t0.clientX - dragStart.x;
+    const dy = t0.clientY - dragStart.y;
     const sf = width / (2 * view.scale);
     view.center.x = viewStart.center.x - dx / sf;
     view.center.y = viewStart.center.y + dy / sf;
