@@ -40,7 +40,8 @@ export default defineConfig({
       output: {
         globals: {
           vue: 'Vue',
-          '@vuepress/client': 'VuePressClient'
+          '@vuepress/client': 'VuePressClient',
+          '@vuepress/utils': 'VuePressUtils'
         }
       }
     }
